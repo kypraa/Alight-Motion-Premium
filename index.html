@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aktivasi Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    body {
+      background-color: #f7f3e9;
+      background-image: radial-gradient(#d3cbbe 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #000000;
+    }
+
+    .card {
+      background: #7cd5f3;
+      border: 3.5px solid #000000;
+      border-radius: 12px;
+      padding: 28px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 6px 6px 0px #000000;
+      color: #000000;
+    }
+
+    .card-header {
+      text-align: left;
+      margin-bottom: 24px;
+      border-bottom: 3.5px solid #000000;
+      padding-bottom: 16px;
+    }
+
+    .card-header h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .card-header p {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="email"], input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      background-color: #ffffff;
+      border: 3px solid #000000;
+      border-radius: 8px;
+      color: #000000;
+      font-size: 15px;
+      font-weight: 700;
+      outline: none;
+      box-shadow: 4px 4px 0px #000000;
+      transition: all 0.1s ease;
+    }
+
+    input:focus {
+      background-color: #e0f7ff;
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #000000;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #1a192b; /* Biru Dongker / Dark Navy */
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 800;
+      text-transform: uppercase;
+      border: 3px solid #000000;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0px #000000;
+      transition: all 0.1s ease;
+    }
+
+    button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px #000000;
+      background-color: #2a2942;
+    }
+
+    button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000000;
+    }
+
+    button:disabled {
+      background-color: #e0e0e0;
+      color: #888888;
+      border-color: #000000;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 4px 4px 0px #000000;
+    }
+
+    .status-box {
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      padding: 12px;
+      border: 3px solid #000000;
+      border-radius: 8px;
+      box-shadow: 4px 4px 0px #000000;
+      display: none;
+    }
+
+    .status-box.info {
+      display: block;
+      background: #ffffff;
+      color: #000000;
+    }
+
+    .status-box.error {
+      display: block;
+      background: #ff4757;
+      color: #ffffff;
+    }
+
+    .status-box.success {
+      display: block;
+      background: #2ed573;
+      color: #000000;
+    }
+
+    pre {
+      margin-top: 20px;
+      background: #ffffff;
+      color: #000000;
+      border: 3px solid #000000;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 180px;
+      overflow-y: auto;
+      box-shadow: 4px 4px 0px #000000;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .step-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #000000;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Aktivasi Premium</h2>
+      <p>Klaim fitur premium akun kamu di sini.</p>
+    </div>
+
+    <!-- Step 1 -->
+    <div id="step1">
+      <span class="step-badge">Langkah 1 / 2</span>
+      <div class="form-group">
+        <label for="email">Alamat Email</label>
+        <input type="email" id="email" placeholder="nama@email.com">
+      </div>
+      <button id="btnSend" onclick="sendLink()">
+        <span>Kirim Magic Link</span>
+      </button>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2" class="hidden">
+      <span class="step-badge">Langkah 2 / 2</span>
+      <div class="form-group">
+        <label for="rawLink">Magic Link Verifikasi</label>
+        <input type="text" id="rawLink" placeholder="Paste link dari email di sini">
+      </div>
+      <button id="btnVerify" onclick="processPremium()">
+        <span>Verifikasi & Aktifkan</span>
+      </button>
+    </div>
+
+    <!-- Status & Output -->
+    <div id="status" class="status-box"></div>
+    <pre id="result" class="hidden"></pre>
+  </div>
+
+  <script>
+    let currentEmail = '';
+
+    function showStatus(message, type) {
+      const statusDiv = document.getElementById('status');
+      statusDiv.className = `status-box ${type}`;
+      statusDiv.innerText = message;
+    }
+
+    async function sendLink() {
+      currentEmail = document.getElementById('email').value.trim();
+      if (!currentEmail) return alert('Silakan masukkan email terlebih dahulu!');
+
+      const btn = document.getElementById('btnSend');
+      btn.disabled = true;
+      btn.innerText = 'Mengirim...';
+      showStatus('Mengirim magic link ke email kamu...', 'info');
+
+      try {
+        const res = await fetch('/api/send-link', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: currentEmail })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showStatus('Link terkirim! Silakan cek inbox/spam email kamu.', 'success');
+          document.getElementById('step1').classList.add('hidden');
+          document.getElementById('step2').classList.remove('hidden');
+        } else {
+          showStatus('Gagal: ' + (data.message || 'Gagal mengirim link'), 'error');
+          btn.disabled = false;
+          btn.innerText = 'Kirim Magic Link';
+        }
+      } catch (err) {
+        showStatus('Terjadi kesalahan jaringan: ' + err.message, 'error');
+        btn.disabled = false;
+        btn.innerText = 'Kirim Magic Link';
+      }
+    }
+
+    async function processPremium() {
+      const rawLink = document.getElementById('rawLink').value.trim();
+      if (!rawLink) return alert('Silakan paste link verifikasi dari email!');
+
+      const btn = document.getElementById('btnVerify');
+      btn.disabled = true;
+      btn.innerText = 'Memproses...';
+      showStatus('Memverifikasi link & mengaktifkan status premium...', 'info');
+
+      try {
+        const res = await fetch('/api/process-premium', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: currentEmail, rawLink })
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          showStatus('Selamat! Status premium berhasil diaktifkan.', 'success');
+          document.getElementById('result').classList.remove('hidden');
+          document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+          btn.innerText = 'Berhasil Terverifikasi';
+        } else {
+          showStatus('Gagal: ' + (data.message || 'Verifikasi gagal'), 'error');
+          btn.disabled = false;
+          btn.innerText = 'Verifikasi & Aktifkan';
+        }
+      } catch (err) {
+        showStatus('Terjadi kesalahan jaringan: ' + err.message, 'error');
+        btn.disabled = false;
+        btn.innerText = 'Verifikasi & Aktifkan';
+      }
+    }
+  </script>
+</body>
+</html>
